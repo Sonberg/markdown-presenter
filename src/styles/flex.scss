@@ -1,0 +1,52 @@
+.flex           { display: flex; backface-visibility: hidden; }
+.flex-inline    { display: inline-flex; backface-visibility: hidden; }
+
+.flex-1 { flex: 1; }
+.flex-2 { flex: 2; }
+.flex-3 { flex: 3; }
+
+
+.flex-column    { flex-direction: column; }
+.flex-row       { flex-direction: row; }
+.flex-wrap      { flex-wrap: wrap; }
+
+.flex-center    { align-items: center; }
+.flex-baseline  { align-items: baseline; }
+.flex-stretch   { align-items: stretch; }
+.flex-start     { align-items: flex-start; }
+.flex-end       { align-items: flex-end; }
+.flex-right     { margin-left: auto; }
+.flex-left      { margin-right: auto; }
+
+.flex-justify  { justify-content: space-between; }
+
+.flex-auto {
+  flex: 1 1 auto;
+  min-width: 0; /* 1 */
+  min-height: 0; /* 1 */
+}
+
+.flex-grow    { flex: 1 0 auto }
+.flex-shrink  { flex: 0 0 auto; }
+.flex-expand  { flex: 1 1 auto; }
+.flex-none    { flex: none }
+.flex-reduce  { flex: 0 1 auto; }
+
+.flex-first   { order: -1 }
+.flex-last    { order: 99999 }
+
+.flex-wrap    { flex-wrap: wrap; }
+.flex-nowrap  { flex-wrap: no-wrap; }
+
+.flex-centering {
+	display: flex;
+	flex: 1 1 auto;
+	align-items: center;
+	justify-content: center;
+}
+
+.justify-space-between  { justify-content: space-between; }
+.justify-space-around   { justify-content: space-around; }
+.justify-center         { justify-content: center; }
+.justify-flex-end       { justify-content: flex-end; }
+.justify-flex-start     { justify-content: flex-start; }

@@ -1,0 +1,39 @@
+.progress-bar {
+    height: 5px;
+    background-color: #ecf0f1;
+    opacity: 0.6;
+    width: 100%;
+
+    .bar {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: black;
+      transition: all 0.3s;
+    }
+  }
+  
+
+  .progress-dott {
+      padding: 0.5em;
+      display: flex;
+      align-items: center;
+      .dott {
+          width: 10px;
+          height: 10px;
+          border: 1px solid;
+          border-radius: 100px;
+          margin: 0 4px;
+          transition: all 0.3s;
+
+          &.active {
+              background: white;
+          }
+
+          &.current {
+            height: 16px;
+            width: 16px;
+            margin: 0 8px;
+          }
+      }
+  }
