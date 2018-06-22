@@ -4,16 +4,16 @@
         v-html="'prev'"
         :disabled="current < 2"
         v-shortkey.once="['arrowleft']"
-        @shortkey="goPrev"
-        @click="goPrev"
+        @shortkey="prev"
+        @click="prev"
     />
 
     <button
         v-html="'next'"
         :disabled="current > total - 1"
         v-shortkey.once="['arrowright']"
-        @shortkey="goNext"
-        @click="goNext"
+        @shortkey="next"
+        @click="next"
     />
 </div>
 </template>
@@ -43,22 +43,6 @@ export default {
             return {
                 hidden: this.options['navigation-hide']
             }
-        }
-    },
-    methods: {
-        goNext() {
-            if (this.current > this.total - 1) {
-                return;
-            }
-
-            this.next();
-        },
-        goPrev() {
-            if (this.current < 2) {
-                return;   
-            }
-
-            this.prev()
         }
     }
 };

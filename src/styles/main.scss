@@ -23,6 +23,7 @@ html,
     width: 100%;
     display: flex;
     font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
 }
 
 textarea {
@@ -48,4 +49,10 @@ textarea {
 .presenter {
     background-size: cover !important;
     background-position: center !important;
+    overflow: hidden;
+    font-size: calc((32vw - 4.5rem) / 7);
+
+    h1, h2, h3, h4, h5 {
+        margin: 0; 
+    }
 }
