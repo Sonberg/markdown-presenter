@@ -28,9 +28,7 @@ export default {
                 return this.$store.getters.presentation || "";
             },
             set(val) {
-              console.log(val);
-              
-                this.$store.commit('setPresentation', val)
+                this.$store.commit('setPresentation', val);
             }
         }
     },
