@@ -1,36 +1,38 @@
 .progress-bar {
     height: 5px;
     width: 100%;
-
     .bar {
-      display: block;
-      height: 100%;
-      width: 0%;
-      background: black;
-      transition: all 0.3s;
+        display: block;
+        height: 100%;
+        width: 0%;
+        background: black;
+        transition: all 0.3s;
     }
-  }
-  
+}
 
-  .progress-dott {
-      padding: 0.5em;
-      display: flex;
-      align-items: center;
-      .dott {
-          width: 10px;
-          height: 10px;
-          border: 1px solid;
-          border-radius: 100px;
-          margin: 0 4px;
-          transition: all 0.3s;
-
-          &.active {
-              background: white;
-          }
-
-          &.current {
+.progress-dott {
+    width: 100%;
+    margin-top: auto;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 10px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    .dott {
+        width: 10px;
+        height: 10px;
+        border: 1px solid;
+        border-radius: 100px;
+        margin: 0 4px;
+        transition: all 0.3s;
+        &.active {
+            background: white;
+        }
+        &.current {
             width: 16px;
             margin: 0 8px;
-          }
-      }
-  }
+        }
+    }
+}
