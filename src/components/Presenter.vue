@@ -1,6 +1,6 @@
 <template>
 <div
-    :style="options"
+    :style="groupOptions"
     class="presenter"
     v-touch:swipe.left="next"
     v-touch:swipe.right="prev"
@@ -15,7 +15,7 @@
             style="margin-bottom: auto; overflow: scroll"
             class="flex flex-1 flex-center justify-center flex-column p1"
             :key="current"
-            :page="pages[current - 1]"
+            :page="currentPage"
         />
         </transition>
 
@@ -25,14 +25,14 @@
             :next="next"
             :prev="prev"
             :total="pages.length"
-            :options="options"
+            :options="groupOptions"
         />
 
         <presenter-progress
             class="flex justify-center pt1"
             :current="current"
             :total="pages.length"
-            :options="options"
+            :options="groupOptions"
         />
 
         </div>
@@ -55,8 +55,6 @@ export default {
         return {
             animation: null,
             current: 1,
-            pages: [],
-            options: {},
             properties: [
                 '@background',
                 '@color',
@@ -76,7 +74,7 @@ export default {
                 return;
             }
 
-            this.animation = this.options['animation-type'] + "-in";
+            this.animation = this.groupOptions['animation-type'] + "-in";
             this.current = this.current + 1;
         },
         prev() {
@@ -84,36 +82,59 @@ export default {
                 return;
             }
 
-            this.animation = this.options['animation-type'] + "-out";
+            this.animation = this.groupOptions['animation-type'] + "-out";
             this.current = this.current - 1;
+        },
+        removeOptions(lines) {
+            if (!lines) {
+                return "";
+            }
+            return lines.split("\n").filter(x => this.optionLines.indexOf(x) == -1).join("\n");
         }
     },
-    created() {
-        var lines = this.markdown
-            .split("\n");
+    computed: {
+        lines() {
+            return this.markdown.split("\n");
+        },
+        optionLines() {
+            var lines = this.pages
+                .slice(0, this.current)
+                .join("\n")
+                .split("\n");
 
-        var settings = this.properties
-            .map(x => lines.filter(y => y.indexOf(x) != -1))
-            .filter(x => x)
-            .reduce((arr, item) => arr.concat(item), []);
+            return this.properties
+                .map(x => lines.filter(y => y.indexOf(x) != -1))
+                .reduce((arr, item) => arr.concat(item), []);
+        },
+        groupOptions() {
+            return this.optionLines.reduce((obj, item) => {
+                var splitted = item
+                    .substring(1)
+                    .replace(/\:/, '&').split('&')
 
-        lines = lines.filter(x => settings.indexOf(x) == -1);
+                obj[splitted[0]] = splitted[1].trim();
+                return obj;
+            }, {});
+        },
+        pages() {
+            var pages = [];
+            var lines = this.lines;
 
-        this.options = settings.reduce((obj, item) => {
-            var splitted = item
-                .substring(1)
-                .replace(/\:/, '&').split('&')
+            while (lines.indexOf('---') != -1) {
+                pages.push(lines.splice(0, lines.indexOf('---') + 1).filter(x => x != '---').join("\n"));
+            }
 
-            obj[splitted[0]] = splitted[1].trim();
-            return obj;
-        }, {});
+            pages.push(lines.join("\n"));
 
-        while (lines.indexOf('---') != -1) {
-            this.pages.push(lines.splice(0, lines.indexOf('---') + 1).filter(x => x != '---').join("\n"));
+            return pages;
+        },
+        currentPage() {
+            return this.removeOptions(this.pages[this.current - 1]);
         }
-
-        this.pages.push(lines.join("\n"));
-
     }
 };
 </script>
+
+<style scoped>
+@import '~github-markdown-css';
+</style>

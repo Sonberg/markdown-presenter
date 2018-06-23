@@ -4,10 +4,13 @@
     class="flex flex-column"
     style="min-height: 100vh; width: 100%"
 >
-    <textarea
+    <markdown-editor
         v-model="presentation"
-        class="flex-1"
+        preview-class="markdown-body"
+        :configs="options"
+        :highlight="true"
     />
+    
     <div class="composer p1">
         Number of pages: {{numberOfpages(presentation)}}
         <router-link
@@ -20,8 +23,16 @@
 </template>
 
 <script>
+import markdownEditor from 'vue-simplemde/src/markdown-editor'
+import hljs from 'highlight.js';
+
+window.hljs = hljs;
+
 export default {
     name: 'Compose',
+    components: {
+        markdownEditor
+    },
     computed: {
         presentation: {
             get() {
@@ -34,16 +45,16 @@ export default {
     },
     data() {
         return {
-            properties: [
-                '--background',
-                '--color',
-                '--text-align'
-            ]
+            options: {
+                toolbar: false,
+                autofocus: true,
+                spellChecker: false
+            }
         }
     },
     methods: {
         numberOfpages(val) {
-          
+
             if (!val.length) {
                 return 0;
             }
@@ -56,9 +67,14 @@ export default {
                 pages.push(lines.splice(0, lines.indexOf('---') + 1).splice(0, -1).join("\n"));
             }
             pages.push(lines.join("\n"));
-            
+
             return pages.length;
         }
     }
 }
 </script>
+
+<style>
+@import '~simplemde/dist/simplemde.min.css';
+@import '~highlight.js/styles/atom-one-dark.css';
+</style>
