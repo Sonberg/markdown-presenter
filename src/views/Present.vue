@@ -1,5 +1,5 @@
 <template>
-  <presenter :markdown="presentation" class="flex flex-1 flex-column"/>
+  <presenter :markdown="presentation" />
 </template>
 
 <script>

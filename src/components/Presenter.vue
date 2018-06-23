@@ -1,7 +1,7 @@
 <template>
 <div
-    :style="groupOptions"
     class="presenter"
+    :style="groupOptions"
     v-touch:swipe.left="next"
     v-touch:swipe.right="prev"
 >
@@ -12,8 +12,8 @@
         appear
     >
         <presenter-view
-            style="margin-bottom: auto; overflow: scroll"
-            class="flex flex-1 flex-center justify-center flex-column p1"
+            style=" overflow: scroll"
+            class="flex flex-center justify-center presenter-view"
             :key="current"
             :page="currentPage"
         />

@@ -5,6 +5,7 @@
     :current="current"
     :total="total"
     :color="settings.color"
+    class="progress"
 />
 
 <presenter-progress-dott
@@ -12,11 +13,14 @@
     :current="current"
     :total="total"
     :color="settings.color"
+        class="progress"
+
 />
 
 <div
     v-else
     :style="{ color: settings.color, fontSize: '16px', padding: '1em'}"
+        class="progress"
 >
     {{current}} of {{total}}
     </div>
