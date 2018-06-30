@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Presenter from '@/components/Presenter.vue'
+import Presenter from '@/components/present/Presenter.vue'
 
 export default {
     name: 'Present',

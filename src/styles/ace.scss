@@ -1,0 +1,28 @@
+// *************************************
+//
+//   Ace Editor
+//   -> Styling of the Ace Editor
+//
+//
+// *************************************
+
+.ace_editor {
+    font: 1em/normal 'Ubuntu Mono', Monaco, monospace !important;
+    line-height: 2rem !important;
+    border-left: 1px solid #cdcdcd;
+    border-right: 1px solid #cdcdcd;
+    width: 100%;
+    height: 100%;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+  
+  
+    .ace_gutter {
+      -webkit-font-smoothing: antialiased;
+    }
+}
+
+#editor {
+    
+}

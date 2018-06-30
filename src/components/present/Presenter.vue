@@ -4,6 +4,8 @@
     :style="groupOptions"
     v-touch:swipe.left="next"
     v-touch:swipe.right="prev"
+    v-shortkey.once="['esc']"
+    @shortkey="close"
 >
     <transition
         :name="animation"
@@ -13,7 +15,7 @@
     >
         <presenter-view
             style=" overflow: scroll"
-            class="flex flex-center justify-center presenter-view"
+            class="presenter-view"
             :key="current"
             :page="currentPage"
         />
@@ -39,9 +41,9 @@
 </template>
 
 <script>
-import PresenterNavigation from '@/components/Presenter.Navigation.vue'
-import PresenterProgress from '@/components/Presenter.Progress.vue'
-import PresenterView from '@/components/Presenter.View.vue'
+import PresenterNavigation from '@/components/present/Presenter.Navigation.vue'
+import PresenterProgress from '@/components/present/Presenter.Progress.vue'
+import PresenterView from '@/components/present/Presenter.View.vue'
 
 export default {
     name: "Presenter",
@@ -61,6 +63,10 @@ export default {
                 '@text-align',
                 '@font-size',
                 '@padding',
+                '@flex',
+                '@display',
+                '@justify-content',
+                '@align-items',
                 '@animation-type',
                 '@navigation-hide',
                 '@progress-type',
@@ -84,6 +90,9 @@ export default {
 
             this.animation = this.groupOptions['animation-type'] + "-out";
             this.current = this.current - 1;
+        },
+        close() {
+            this.$router.push({ name: 'compose' });
         },
         removeOptions(lines) {
             if (!lines) {
@@ -110,7 +119,7 @@ export default {
             return this.optionLines.reduce((obj, item) => {
                 var splitted = item
                     .substring(1)
-                    .replace(/\:/, '&').split('&')
+                    .replace(/:/, '&').split('&')
 
                 obj[splitted[0]] = splitted[1].trim();
                 return obj;

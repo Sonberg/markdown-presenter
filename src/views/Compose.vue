@@ -1,37 +1,25 @@
-<template>
-<div
-    v-if="$route.name == 'compose'"
-    class="flex flex-column"
-    style="min-height: 100vh; width: 100%"
->
-    <markdown-editor
-        v-model="presentation"
-        preview-class="markdown-body"
-        :configs="options"
-        :highlight="true"
-    />
-    
-    <div class="composer p1">
-        Number of pages: {{numberOfpages(presentation)}}
-        <router-link
-            :to="{ name: 'present' }"
-            v-html="'Start'"
-        />
-    </div>
-    </div>
-    <router-view v-else/>
+<template lang="html">
+  <div v-if="$route.name == 'compose'" class="flex flex-column flex-1">
+      <app-header/>
+      <div class="composer flex-1">
+        <compose-toolbar/>
+        <compose-editor v-model="presentation" />
+      </div>
+  </div>
+  <router-view v-else/>
 </template>
 
 <script>
-import markdownEditor from 'vue-simplemde/src/markdown-editor'
-import hljs from 'highlight.js';
-
-window.hljs = hljs;
+import AppHeader from '@/components/App.Header.vue';
+import ComposeToolbar from '@/components/compose/Compose.Toolbar.vue';
+import ComposeEditor from '@/components/compose/Compose.Editor.vue';
 
 export default {
     name: 'Compose',
     components: {
-        markdownEditor
+        ComposeEditor,
+        ComposeToolbar,
+        AppHeader
     },
     computed: {
         presentation: {
@@ -40,15 +28,6 @@ export default {
             },
             set(val) {
                 this.$store.commit('setPresentation', val);
-            }
-        }
-    },
-    data() {
-        return {
-            options: {
-                toolbar: false,
-                autofocus: true,
-                spellChecker: false
             }
         }
     },
@@ -73,8 +52,3 @@ export default {
     }
 }
 </script>
-
-<style>
-@import '~simplemde/dist/simplemde.min.css';
-@import '~highlight.js/styles/atom-one-dark.css';
-</style>

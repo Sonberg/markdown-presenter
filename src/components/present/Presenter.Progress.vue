@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import PresenterProgressDott from '@/components/Presenter.Progress.Dott';
-import PresenterProgressBar from '@/components/Presenter.Progress.Bar';
+import PresenterProgressDott from '@/components/present/Presenter.Progress.Dott';
+import PresenterProgressBar from '@/components/present/Presenter.Progress.Bar';
 
 export default {
     name: "PresenterProgress",

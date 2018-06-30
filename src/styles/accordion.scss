@@ -1,0 +1,44 @@
+.accordion {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    section {
+        display: flex;
+        flex-direction: column;
+        flex: none;
+
+        a {
+            background: white;
+            padding: 1em;
+            border-bottom: 1px solid #c6c6c6;
+        }
+
+        &.open {
+            flex: 0 auto;
+
+            .accordion-content {
+                border-bottom: 1px solid #c6c6c6;
+            }
+        }
+        .accordion-content {
+            flex: 1 1 0%;
+            overflow-x: scroll;
+        }
+    }
+}
+
+
+
+// Unspalsh result
+.results {
+    padding: 4px 0;
+    .img {
+        width: 100%;
+        height: 160px;
+        background-size: cover;
+        background-position: center;
+        &:not(:last-child) {
+            margin-bottom: 1em;
+        }
+    }
+}

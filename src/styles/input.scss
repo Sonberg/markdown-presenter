@@ -1,0 +1,13 @@
+input:not([type='submit']) {
+    background: #eee;
+    border: none;
+    border-radius: 0px;
+    transition: all 0.3s;
+    padding: 1em;
+    outline: none;
+
+    &:focus {
+        background: #f6f6f6;
+        box-shadow: none;
+    }
+}
